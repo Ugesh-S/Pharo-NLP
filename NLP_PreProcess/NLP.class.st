@@ -71,12 +71,12 @@ NLP >> NgramFor: text Nsize: n [
 	stword := self StopWords: text.
 	vlist := stword collect: [ :i | [ :each | each isSeparator ] split: i ].
 	
-	temp := OrderedCollection new.
+	
 	arr := OrderedCollection new.
 	
-	vlist do: [ :i | i doWithIndex: [ :j :idx | ((idx+(n-1)) > (i size)) ifFalse: [ temp add:(i copyFrom:idx to:(idx + (n-1))) ] ]].
+	vlist do: [ :i | temp := OrderedCollection new. i doWithIndex: [ :j :idx | ((idx+(n-1)) > (i size)) ifFalse: [ temp add:(i copyFrom:idx to:(idx + (n-1)))] ]. arr add:temp].
 	
-	^temp.
+	^arr.
 ]
 
 { #category : #'as yet unclassified' }
