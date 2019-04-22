@@ -216,5 +216,6 @@ an OrderedCollection('also' 'work' 'simple')
 )
 )
 ```
+The Features from the functions can be used with the ML libraries, DataFrame Libraries, Keras Bridge and lot more tasks related to Data Analysis and Machine Learning.
 
 Thanks :-)
