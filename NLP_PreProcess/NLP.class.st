@@ -26,11 +26,12 @@ NLP >> BagOfWords: text [
 ]
 
 { #category : #'as yet unclassified' }
-NLP >> EditDistBetween: str1 and: str2 [
+NLP >> EditDistBetween: str and: strr [
 
-	| mat m s1 s2 |
+	| mat m s1 s2 str1 str2 |
 	
-
+	str1 := str asLowercase.
+	str2 := strr asLowercase.  
 	s1 := str1 size.
 	s2 := str2 size.
 	m := Matrix rows:(s1+1)  columns:(s2+1).
@@ -43,9 +44,12 @@ NLP >> EditDistBetween: str1 and: str2 [
 ]
 
 { #category : #'as yet unclassified' }
-NLP >> HammingDistBetween: str1 and: str2 [
+NLP >> HammingDistBetween: str and: strr [
 
-	| s1 s2 dist |
+	| s1 s2 dist str1 str2 |
+	
+	str1 := str asLowercase.
+	str2 := strr asLowercase.
 	
 	s1 := str1 size.
 	s2 := str2 size.
@@ -80,7 +84,7 @@ NLP >> StopWords: text [
 
 	|st ftext prtext rtext|
 	
-	st := Array withAll: #( 'i' 'me' 'my' 'myself' 'we' 'our' 'ours' 'ourselves' 'you' 'you''re' 'you''ve' 'you''ll' 'you''d' 'your' 'yours' 'yourself' 'yourselves' 'he' 'hey' 'him' 'his' 'himself' 'she' 'she''s' 'her' 'hers' 'herself' 'it' 'it''s' 'its' 'itself' 'they' 'them' 'their' 'theirs' 'themselves' 'what' 'which' 'who' 'whom' 'this' 'that' 'that''ll' 'these' 'those' 'am' 'is' 'are' 'was' 'were' 'be' 'been' 'being' 'have' 'has' 'had' 'having' 'do' 'does' 'did' 'doing' 'a' 'an' 'the' 'and' 'but' 'if' 'or' 'because' 'as' 'until' 'while' 'of' 'at' 'by' 'for' 'with' 'about' 'between' 'into' 'through' 'during' 'before' 'after' 'to' 'from' 'up' 'down' 'in' 'out' 'on' 'off' 'over' 'under' 'again' 'further' 'then' 'once' 'here' 'there' 'when' 'where' 'why' 'how' 'all' 'any' 'both' 'each' 'few' 'more' 'most' 'other' 'some' 'such' 'nor' 'only' 'own' 'same' 'so' 'than' 'too' 'very' 's' 't' 'can' 'will' 'just' 'should' 'should''ve' 'now' 'd' 'll' 'm' 'o' 're' 've' 'y' 'ain' 'aren' 'aren''t' 'couldn' 'couldn''t' 'didn' 'didn''t' 'doesn' 'doesn''t' 'hadn' 'hadn''t' 'hasn' 'hasn''t' 'haven' 'haven''t' 'isn' 'isn''t' 'ma' 'mightn' 'mightn''t' 'mustn' 'mustn''t' 'needn' 'needn''t' 'shan' 'shan''t' 'shouldn' 'shouldn''t' 'wasn' 'wasn''t' 'weren' 'weren''t' 'won' 'won''t' 'wouldn' 'wouldn''t'  ).
+	st := Array withAll: #( 'i' 'me' 'my' 'myself' 'we' 'our' 'ours' 'ourselves' 'you' 'you''re' 'you''ve' 'you''ll' 'you''d' 'your' 'yours' 'yourself' 'yourselves' 'he' 'hey' 'him' 'his' 'himself' 'she' 'she''s' 'her' 'hers' 'herself' 'it' 'it''s' 'its' 'itself' 'they' 'them' 'their' 'theirs' 'themselves' 'what' 'which' 'who' 'whom' 'this' 'that' 'that''ll' 'these' 'those' 'am' 'is' 'are' 'was' 'were' 'be' 'been' 'being' 'have' 'has' 'had' 'having' 'do' 'does' 'did' 'doing' 'a' 'an' 'the' 'and' 'but' 'if' 'or' 'because' 'as' 'until' 'while' 'of' 'at' 'by' 'for' 'with' 'about' 'between' 'into' 'through' 'during' 'before' 'after' 'to' 'from' 'up' 'down' 'in' 'out' 'on' 'off' 'over' 'under' 'again' 'further' 'then' 'once' 'here' 'there' 'when' 'where' 'why' 'how' 'all' 'any' 'both' 'each' 'few' 'more' 'most' 'other' 'some' 'such' 'nor' 'only' 'own' 'same' 'so' 'than' 'too' 'very' 's' 't' 'can' 'will' 'just' 'should' 'should''ve' 'now' 'd' 'll' 'm' 'o' 're' 've' 'y' 'ain' 'aren' 'aren''t' 'couldn' 'couldn''t' 'didn' 'didn''t' 'doesn' 'doesn''t' 'hadn' 'hadn''t' 'hasn' 'hasn''t' 'haven' 'haven''t' 'isn' 'isn''t' 'ma' 'mightn' 'mightn''t' 'mustn' 'mustn''t' 'needn' 'needn''t' 'shan' 'shan''t' 'shouldn' 'shouldn''t' 'wasn' 'wasn''t' 'weren' 'weren''t' 'won' 'won''t' 'wouldn' 'wouldn''t' '.' ',' ).
 	prtext := text collect: [ :i | i asLowercase ].
 	rtext := prtext  collect: [ :j | [ :each | each isSeparator ] split: j ].
 	ftext := rtext  collect: [ :k | k reject: [ :each | st includes: each ] ].
